@@ -8,6 +8,8 @@ $response = array(
     'status'=>false
 );
 
+$return = [];
+
 if (isset($_POST['timestamp']) && isset($_POST['location']) && isset($_POST['garbage_long']) && isset($_POST['garbage_lat'])) {
     if ($db->dbConnect()) {
         if ($db->appendLocation($_POST['timestamp'], $_POST['location'], $_POST['garbage_long'], $_POST['garbage_lat'])) {
@@ -26,6 +28,8 @@ if (isset($_POST['timestamp']) && isset($_POST['location']) && isset($_POST['gar
     $response['status'] = false;
 };
 
-echo json_encode($response);
+array_push($return, $response);
+
+echo json_encode($return);
 
 ?>
